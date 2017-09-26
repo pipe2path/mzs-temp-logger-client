@@ -53,9 +53,6 @@ class Table extends React.Component {
                     className="-striped -highlight"
                 />
                 <br />
-                <br />
-                <br />
-                <Footer />
             </div>
         );
     }
