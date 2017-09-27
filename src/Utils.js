@@ -1,5 +1,6 @@
 import React from "react";
 import namor from "namor";
+import axios from "axios";
 import "./index.css";
 
 const range = len => {
@@ -10,14 +11,36 @@ const range = len => {
     return arr;
 };
 
+export function getData2(){
+    var data = {};
+    var dataArray= [];
+    axios.get('https://mzs-tmp-logger-service.herokuapp.com/temperature')
+        .then(function (response) {
+            for (var i=0;i<response.data.length;i++){
+                data = {};
+                data.id = response.data[i].entityId;
+                data.entityName = '';
+                data.freezerNum = '';
+                data.celsius = response.data[i].readingCelsius;
+                data.fahrenheit = (data.celsius * 9/5) + 32;
+                data.dateRecorded = response.data[i].dateTimeStamp;
+                dataArray.push(data);
+            }
+            this.setState({dataArray});
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
 export function getData(){
     return [{
-        id: 1,
-        entityName: 'ABC Restaurant',
-        freezerNum: '10',
-        celsius: '-5',
-        fahrenheit: '13',
-        dateRecorded: '2017-09-22'
+            id: 1,
+            entityName: 'ABC Restaurant',
+            freezerNum: '10',
+            celsius: '-5',
+            fahrenheit: '13',
+            dateRecorded: '2017-09-22'
         },
         {
             id: 2,

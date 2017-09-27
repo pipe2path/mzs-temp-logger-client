@@ -1,20 +1,46 @@
 import React from "react";
-import { getData, Footer } from "./Utils";
+import {getData2, Footer} from "./Utils";
 import './Table.css';
+import axios from "axios";
 
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 class Table extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            data: getData()
-        };
+    constructor(props) {
+        super(props);
+        this.state = {data: []};
     }
+
+    componentDidMount() {
+        this.TemperatureList();
+    }
+
+    TemperatureList() {
+        var data = {};
+        var dataArray = [];
+        axios.get('https://mzs-tmp-logger-service.herokuapp.com/temperature')
+            .then((response) => {
+                for (var i = 0; i < response.data.length; i++) {
+                    data = {};
+                    data.id = response.data[i].entityId;
+                    data.entityName = 'Menezes garage';
+                    data.freezerNum = '1';
+                    data.celsius = response.data[i].readingCelsius;
+                    data.fahrenheit = (data.celsius * 9 / 5) + 32;
+                    data.dateRecorded = response.data[i].dateTimeStamp;
+                    dataArray.push(data);
+                }
+                this.setState({data: dataArray});
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     render() {
-        const { data } = this.state;
+        var data  = this.state.data;
         return (
             <div>
                 <ReactTable
