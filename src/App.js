@@ -8,7 +8,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
 
-          <h2>Welcome to the Temperature Logger</h2>
+          <h2>Temperature Logger</h2>
         </div>
       </div>
     );

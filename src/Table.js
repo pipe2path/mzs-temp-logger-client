@@ -1,5 +1,5 @@
 import React from "react";
-import {getData2, Footer} from "./Utils";
+import {TemperatureList, Footer} from "./Utils";
 import './Table.css';
 import axios from "axios";
 
@@ -28,7 +28,7 @@ class Table extends React.Component {
                     data.entityName = 'Menezes garage';
                     data.freezerNum = '1';
                     data.celsius = response.data[i].readingCelsius;
-                    data.fahrenheit = (data.celsius * 9 / 5) + 32;
+                    data.fahrenheit = ((data.celsius * 9 / 5) + 32).toFixed(2);
                     data.dateRecorded = response.data[i].dateTimeStamp;
                     dataArray.push(data);
                 }
@@ -50,7 +50,8 @@ class Table extends React.Component {
                             columns: [
                                 {
                                     Header: "ID",
-                                    accessor: "id"
+                                    accessor: "id",
+                                    width: 100
                                 },
                                 {
                                     Header: "Entity Name",
@@ -58,15 +59,18 @@ class Table extends React.Component {
                                 },
                                 {
                                     Header: "Freezer #",
-                                    accessor: "freezerNum"
+                                    accessor: "freezerNum",
+                                    width: 100
                                 },
                                 {
                                     Header: "Celsius",
-                                    accessor: "celsius"
+                                    accessor: "celsius",
+                                    width: 200
                                 },
                                 {
                                     Header: "Fahrenheit",
-                                    accessor: "fahrenheit"
+                                    accessor: "fahrenheit",
+                                    width: 200
                                 },
                                 {
                                     Header: "Last Recorded",
@@ -77,6 +81,7 @@ class Table extends React.Component {
                     ]}
                     defaultPageSize={10}
                     className="-striped -highlight"
+                    sortable="true"
                 />
                 <br />
             </div>

@@ -11,27 +11,27 @@ const range = len => {
     return arr;
 };
 
-export function getData2(){
+/*export function TemperatureList() {
     var data = {};
-    var dataArray= [];
+    var dataArray = [];
     axios.get('https://mzs-tmp-logger-service.herokuapp.com/temperature')
-        .then(function (response) {
-            for (var i=0;i<response.data.length;i++){
+        .then((response) => {
+            for (var i = 0; i < response.data.length; i++) {
                 data = {};
                 data.id = response.data[i].entityId;
-                data.entityName = '';
-                data.freezerNum = '';
+                data.entityName = 'Menezes garage';
+                data.freezerNum = '1';
                 data.celsius = response.data[i].readingCelsius;
-                data.fahrenheit = (data.celsius * 9/5) + 32;
+                data.fahrenheit = (data.celsius * 9 / 5) + 32;
                 data.dateRecorded = response.data[i].dateTimeStamp;
                 dataArray.push(data);
             }
-            this.setState({dataArray});
+            return dataArray;
         })
         .catch(function (error) {
             console.log(error);
         });
-}
+}*/
 
 export function getData(){
     return [{
