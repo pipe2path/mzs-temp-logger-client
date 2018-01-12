@@ -29,6 +29,7 @@ class Table extends React.Component {
                     data.freezerNum = '1';
                     data.celsius = response.data[i].readingCelsius;
                     data.fahrenheit = ((data.celsius * 9 / 5) + 32).toFixed(2);
+                    data.voltage = response.data[i].voltage;
                     data.dateRecorded = response.data[i].dateTimeStamp;
                     dataArray.push(data);
                 }
@@ -70,6 +71,11 @@ class Table extends React.Component {
                                 {
                                     Header: "Fahrenheit",
                                     accessor: "fahrenheit",
+                                    width: 200
+                                },
+                                {
+                                    Header: "Voltage remaining",
+                                    accessor: "voltage",
                                     width: 200
                                 },
                                 {
