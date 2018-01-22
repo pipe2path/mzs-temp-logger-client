@@ -20,8 +20,7 @@ class Table extends React.Component {
     TemperatureList() {
         var data = {};
         var dataArray = [];
-        //axios.get('https://mzs-tmp-logger-service.herokuapp.com/temperature')
-        axios.get('http://localhost:3028/temperature')
+        axios.get('https://mzs-tmp-logger-service.herokuapp.com/temperature')
             .then((response) => {
                 for (var i = 0; i < response.data.length; i++) {
                     data = {};
