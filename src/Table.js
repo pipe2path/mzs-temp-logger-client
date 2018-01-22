@@ -20,12 +20,13 @@ class Table extends React.Component {
     TemperatureList() {
         var data = {};
         var dataArray = [];
-        axios.get('https://mzs-tmp-logger-service.herokuapp.com/temperature')
+        //axios.get('https://mzs-tmp-logger-service.herokuapp.com/temperature')
+        axios.get('http://localhost:3028/temperature')
             .then((response) => {
                 for (var i = 0; i < response.data.length; i++) {
                     data = {};
                     data.id = response.data[i].entityId;
-                    data.entityName = 'Menezes garage';
+                    data.entityName = response.data[i].temperatureDetails[0].name;
                     data.freezerNum = '1';
                     data.celsius = response.data[i].readingCelsius;
                     data.fahrenheit = ((data.celsius * 9 / 5) + 32).toFixed(2);
