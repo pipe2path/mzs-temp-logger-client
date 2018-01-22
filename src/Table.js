@@ -30,7 +30,9 @@ class Table extends React.Component {
                     data.celsius = response.data[i].readingCelsius;
                     data.fahrenheit = ((data.celsius * 9 / 5) + 32).toFixed(2);
                     data.voltage = response.data[i].voltage;
-                    data.dateRecorded = response.data[i].dateTimeStamp;
+                    var dts = response.data[i].dateTimeStamp;
+                    data.dateRecorded = new Date(dts + " UTC").toString();
+
                     dataArray.push(data);
                 }
                 this.setState({data: dataArray});
