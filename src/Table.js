@@ -29,7 +29,8 @@ class Table extends React.Component {
                     data.freezerNum = '1';
                     data.celsius = response.data[i].readingCelsius;
                     data.fahrenheit = ((data.celsius * 9 / 5) + 32).toFixed(2);
-                    data.voltage = response.data[i].voltage;
+                    var voltage = response.data[i].voltage;
+                    data.voltage = parseFloat(voltage).toFixed(2);
                     var dts = response.data[i].dateTimeStamp;
                     data.dateRecorded = new Date(dts + " UTC").toString();
 
