@@ -88,7 +88,7 @@ class Table extends React.Component {
                             ]
                         }
                     ]}
-                    defaultPageSize={10}
+                    defaultPageSize={20}
                     className="-striped -highlight"
                     sortable="true"
                 />
