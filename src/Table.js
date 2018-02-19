@@ -20,6 +20,7 @@ class Table extends React.Component {
     TemperatureList() {
         var data = {};
         var dataArray = [];
+        var dateTimeStamp ;
         axios.get('https://mzs-tmp-logger-service.herokuapp.com/temperature')
             .then((response) => {
                 for (var i = 0; i < response.data.length; i++) {
@@ -31,8 +32,8 @@ class Table extends React.Component {
                     data.fahrenheit = ((data.celsius * 9 / 5) + 32).toFixed(2);
                     var voltage = response.data[i].voltage;
                     data.voltage = parseFloat(voltage).toFixed(2);
-                    var dts = response.data[i].dateTimeStamp;
-                    data.dateRecorded = new Date(dts + " UTC").toString();
+                    var dts = new Date(response.data[i].dateTimeStamp + " UTC")
+                    data.dateRecorded = dts.toLocaleDateString() + " " + dts.toLocaleTimeString();
 
                     dataArray.push(data);
                 }
